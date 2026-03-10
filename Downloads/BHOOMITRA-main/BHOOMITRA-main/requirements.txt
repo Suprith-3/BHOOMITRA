@@ -12,3 +12,4 @@ requests
 google-generativeai
 werkzeug
 gunicorn
+prophet

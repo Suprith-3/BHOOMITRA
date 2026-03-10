@@ -10,8 +10,8 @@ class Config:
     # ------------------------------------------------
     # Flask Security
     # ------------------------------------------------
-    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
-
+    SECRET_KEY = os.getenv("SECRET_KEY", "supersecret")
+    GEMINI_API_KEY = os.getenv("AIzaSyCHWhTofVBRtkAbx1pmeqxXo44Nk2389bU")
     # ------------------------------------------------
     # Database Configuration
     # ------------------------------------------------
