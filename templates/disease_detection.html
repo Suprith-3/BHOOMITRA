@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="row">
+<div class="col-md-8 mx-auto">
+
+<div class="card shadow p-4">
+
+<h2 class="mb-4">
+<i class="bi bi-shield-check text-success"></i>
+Crop Disease Detection
+</h2>
+
+<p>
+Upload a clear photo of the leaf or plant part showing symptoms.
+Our AI analyzes the image using OpenCV and provides treatment advice.
+</p>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="mb-3">
+<input 
+type="file"
+name="image"
+class="form-control"
+accept="image/*"
+required
+onchange="previewImage(event)"
+>
+</div>
+
+<div class="mb-3 text-center">
+<img id="preview" style="max-width:300px; display:none;" class="img-fluid rounded shadow">
+</div>
+
+<button type="submit" class="btn btn-primary w-100">
+Analyze Image
+</button>
+
+</form>
+
+
+<!-- CAMERA BUTTON -->
+<hr>
+
+<div class="text-center">
+
+<a href="{{ url_for('camera_detection') }}" class="btn btn-success">
+
+<i class="bi bi-camera"></i>
+Start Live Camera Detection
+
+</a>
+
+</div>
+
+
+{% if disease %}
+
+<hr>
+
+<div class="row mt-4">
+
+<div class="col-md-5">
+
+<img
+src="{{ url_for('static', filename='uploads/' + image) }}"
+class="img-fluid rounded shadow"
+alt="Uploaded leaf"
+>
+
+</div>
+
+<div class="col-md-7">
+
+<div class="alert alert-warning">
+
+<h4 class="alert-heading">
+Detected Disease: {{ disease }}
+</h4>
+
+<p>
+Confidence: {{ confidence }} %
+</p>
+
+</div>
+
+<h5>Recommended Treatment</h5>
+
+<div class="p-3 bg-light rounded border">
+
+{{ treatment }}
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+function previewImage(event){
+
+const reader = new FileReader()
+
+reader.onload = function(){
+const output = document.getElementById('preview')
+output.src = reader.result
+output.style.display = "block"
+}
+
+reader.readAsDataURL(event.target.files[0])
+
+}
+
+</script>
+
+{% endblock %}

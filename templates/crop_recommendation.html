@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="row">
+<div class="col-md-8 mx-auto">
+
+<div class="card p-4">
+
+<h2 class="mb-4">
+<i class="bi bi-geo-alt text-primary"></i>
+Location-Based Crop Recommendation
+</h2>
+
+<div id="map" style="height:400px;width:100%;" class="rounded border mb-4"></div>
+
+<div class="d-flex gap-2 mb-4">
+
+<button id="detectBtn" class="btn btn-primary">
+<i class="bi bi-crosshair"></i>
+Detect My Location
+</button>
+
+<button id="recommendBtn" class="btn btn-success" disabled>
+Recommend Crops for this Area
+</button>
+
+</div>
+
+<div id="recommendationResult" class="d-none">
+
+<hr>
+
+<h4>Best Crops for your area:</h4>
+
+<div class="row mt-3 text-center">
+
+<div class="col-md-4 mb-3">
+<div class="p-3 border rounded bg-white">
+<h5 class="mb-0 text-success">Ragi</h5>
+</div>
+</div>
+
+<div class="col-md-4 mb-3">
+<div class="p-3 border rounded bg-white">
+<h5 class="mb-0 text-success">Coconut</h5>
+</div>
+</div>
+
+<div class="col-md-4 mb-3">
+<div class="p-3 border rounded bg-white">
+<h5 class="mb-0 text-success">Groundnut</h5>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+let map = L.map('map').setView([12.9716, 77.5946], 10); // Bangalore
+
+// OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '© OpenStreetMap'
+}).addTo(map);
+
+let marker;
+
+// place marker
+function placeMarker(lat, lng){
+
+if(marker){
+map.removeLayer(marker)
+}
+
+marker = L.marker([lat, lng]).addTo(map)
+
+document.getElementById("recommendBtn").disabled = false
+
+}
+
+// click on map
+map.on('click', function(e){
+
+placeMarker(e.latlng.lat, e.latlng.lng)
+
+})
+
+// detect user location
+document.getElementById("detectBtn").addEventListener("click", function(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(function(position){
+
+let lat = position.coords.latitude
+let lng = position.coords.longitude
+
+map.setView([lat, lng], 14)
+
+placeMarker(lat, lng)
+
+})
+
+}
+
+})
+
+// show crops
+document.getElementById("recommendBtn").addEventListener("click", function(){
+
+document.getElementById("recommendationResult")
+.classList.remove("d-none")
+
+})
+
+</script>
+
+{% endblock %}

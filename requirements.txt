@@ -1,0 +1,15 @@
+Flask
+Flask-Login
+Flask-Mail
+SQLAlchemy
+Flask-SQLAlchemy
+python-dotenv
+opencv-python
+pandas
+scikit-learn
+prophet
+requests
+google-generativeai
+werkzeug
+gunicorn
+prophet
