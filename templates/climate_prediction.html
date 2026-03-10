@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card p-4">
+                <h2 class="mb-4"><i class="bi bi-cloud-sun text-warning"></i> Climate Insight</h2>
+                <div class="row mb-5 text-center">
+                    <div class="col-md-3">
+                        <div class="p-3 border rounded">
+                            <p class="text-muted mb-1">Temperature</p>
+                            <h3>28°C</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 border rounded">
+                            <p class="text-muted mb-1">Humidity</p>
+                            <h3>65%</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 border rounded">
+                            <p class="text-muted mb-1">Rainfall Chance</p>
+                            <h3>20%</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 border rounded">
+                            <p class="text-muted mb-1">Condition</p>
+                            <h3>Partly Cloudy</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-success text-white border-0 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold"><i class="bi bi-info-circle"></i> AI Farming Advice</h5>
+                        <p class="mb-0">Weather conditions are ideal for harvesting ragi. Low rainfall expected for next
+                            3 days. Soil moisture is sufficient.</p>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">5-Day Weather Forecast</h4>
+                <canvas id="weatherChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx = document.getElementById('weatherChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: [28, 29, 27, 30, 31],
+                backgroundColor: 'rgba(255, 193, 7, 0.6)',
+                borderColor: '#ffc107',
+                borderWidth: 1
+            }, {
+                label: 'Humidity (%)',
+                data: [65, 60, 70, 55, 50],
+                backgroundColor: 'rgba(13, 110, 253, 0.6)',
+                borderColor: '#0d6efd',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+{% endblock %}

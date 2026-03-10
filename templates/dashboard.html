@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-bold">Welcome back, {{ current_user.name }}!</h1>
+            <p class="text-muted">Here is your farming overview for today.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Disease Detection -->
+        <div class="col-md-3">
+            <a href="{{ url_for('disease_detection') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-shield-check fs-1 text-success"></i>
+                        <h5 class="card-title mt-3">Disease Detection</h5>
+                        <p class="card-text text-muted">Upload crop leaf for AI diagnosis.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Crop Recommendation -->
+        <div class="col-md-3">
+            <a href="{{ url_for('crop_recommendation') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-geo-alt fs-1 text-primary"></i>
+                        <h5 class="card-title mt-3">Crop Recommendation</h5>
+                        <p class="card-text text-muted">Find best crops for your location.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Climate Prediction -->
+        <div class="col-md-3">
+            <a href="{{ url_for('climate_prediction') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-cloud-sun fs-1 text-warning"></i>
+                        <h5 class="card-title mt-3">Climate Insight</h5>
+                        <p class="card-text text-muted">Weather alerts & farming advice.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Price Prediction -->
+        <div class="col-md-3">
+            <a href="{{ url_for('price_prediction') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-currency-dollar fs-1 text-info"></i>
+                        <h5 class="card-title mt-3">Market Price Prediction</h5>
+                        <p class="card-text text-muted">Predict crop prices for 6 months.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Marketplace -->
+        <div class="col-md-3">
+            <a href="{{ url_for('marketplace') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-shop fs-1 text-danger"></i>
+                        <h5 class="card-title mt-3">Marketplace</h5>
+                        <p class="card-text text-muted">Sell crops or browse listings.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Chatbot -->
+        <div class="col-md-3">
+            <a href="{{ url_for('chatbot') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-chat-dots fs-1 text-secondary"></i>
+                        <h5 class="card-title mt-3">AI Farmer Chatbot</h5>
+                        <p class="card-text text-muted">Ask anything in any language.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Yield Prediction -->
+        <div class="col-md-3">
+            <a href="{{ url_for('yield_prediction') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-bar-chart fs-1 text-primary"></i>
+                        <h5 class="card-title mt-3">Yield Prediction</h5>
+                        <p class="card-text text-muted">AI Predicts your expected harvest.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Satellite Monitoring -->
+        <div class="col-md-3">
+            <a href="{{ url_for('satellite_monitoring') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-layers-half fs-1 text-success"></i>
+                        <h5 class="card-title mt-3">Satellite Monitoring</h5>
+                        <p class="card-text text-muted">Check NDVI and crop health.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Gov Services -->
+        <div class="col-md-3">
+            <a href="{{ url_for('gov_services') }}" class="text-decoration-none">
+                <div class="card h-100 text-center p-3 border-0 shadow-sm bg-white">
+                    <div class="card-body">
+                        <i class="bi bi-bank fs-1 text-dark"></i>
+                        <h5 class="card-title mt-3">Gov Services</h5>
+                        <p class="card-text text-muted">Access E-Khata and Land Records.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
