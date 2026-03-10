@@ -1,0 +1,248 @@
+/* --- Modern Agri-Tech Color Palette --- */
+:root {
+    --primary-color: #006d3e; 
+    --primary-gradient: linear-gradient(135deg, #006d3e 0%, #27ae60 100%);
+    --light-bg: #f4fcf7;
+    --accent-color: #ff9f1c; 
+    --dark-green: #0a2e1f;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --nav-glass: rgba(10, 46, 31, 0.8);
+}
+
+/* --- Global Settings --- */
+body {
+    background-color: var(--light-bg);
+    color: var(--dark-green);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- Animated Navbar --- */
+.navbar {
+    background: var(--nav-glass) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+}
+
+/* Navbar transformation on scroll (Triggered by JS) */
+.navbar.scrolled {
+    background: rgba(8, 28, 21, 0.98) !important;
+    padding: 0.6rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand i {
+    display: inline-block;
+    color: #27ae60;
+    animation: leafSway 3s ease-in-out infinite;
+}
+
+.nav-link {
+    position: relative;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* --- Hero Section with Curved Design --- */
+.hero-section {
+    background: linear-gradient(rgba(10, 46, 31, 0.85), rgba(10, 46, 31, 0.7)), 
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 120px 0 200px 0;
+    color: white;
+    position: relative;
+    clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.hero-animation-container {
+    animation: floating 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.3));
+}
+
+/* --- Glassmorphism Cards --- */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 109, 62, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0, 109, 62, 0.15);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: 0.5s ease;
+}
+
+.card:hover .feature-icon {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+/* --- Premium Interactive Buttons --- */
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 45px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(39, 174, 96, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-outline-light {
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 14px 40px;
+    transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+    background: white;
+    color: var(--dark-green);
+}
+
+/* --- Marketplace Image Zoom & Tilt --- */
+.marketplace-img {
+    border: 10px solid white;
+    transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.marketplace-img:hover {
+    transform: scale(1.05) perspective(1000px) rotateY(-5deg);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2) !important;
+}
+
+.rounded-5 { border-radius: 3rem !important; }
+
+/* --- Login & Registration Specific Styles --- */
+
+/* 1. Animated Background for Login Page */
+.login-wrapper {
+    min-height: 100vh;
+    padding-top: 100px; /* Space for the animated navbar */
+    background: linear-gradient(-45deg, #f4fcf7, #e8f5e9, #f1f8e9, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. Style the Login Card using your Glassmorphism logic */
+.auth-card, .col-md-4 .card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 109, 62, 0.1);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 3. Refine Form Inputs to look Modern */
+.form-label {
+    font-weight: 600;
+    color: var(--dark-green);
+    margin-left: 5px;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 109, 62, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 109, 62, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 4. Auth Button Styling (matching your Premium Buttons) */
+.btn-primary.w-100 {
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-transform: none; /* Keeps 'Login' readable but premium */
+}
+
+/* 5. Link Styling */
+.text-center a {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.text-center a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+/* --- Animations --- */
+@keyframes leafSway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(12deg); }
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-section h1, .hero-section p {
+    animation: fadeInUp 1s ease-out forwards;
+}

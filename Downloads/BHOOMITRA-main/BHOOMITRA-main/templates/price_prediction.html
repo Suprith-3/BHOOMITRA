@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+
+<div class="row">
+<div class="col-md-10 mx-auto">
+
+<div class="card p-4">
+
+<h2 class="mb-4">
+<i class="bi bi-graph-up text-info"></i>
+Market Price Prediction
+</h2>
+
+<form method="POST" class="row g-3 mb-5">
+
+<div class="col-md-8">
+
+<select name="crop_name" class="form-select">
+
+<option value="Rice">Rice</option>
+<option value="Wheat">Wheat</option>
+<option value="Maize">Maize</option>
+<option value="Cotton">Cotton</option>
+<option value="Ragi">Ragi (Finger Millet)</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+<button type="submit" class="btn btn-primary w-100">
+Predict Future Prices
+</button>
+</div>
+
+</form>
+
+
+{% if predictions %}
+
+<div class="row">
+
+<div class="col-md-7">
+<canvas id="predictionChart" height="300"></canvas>
+</div>
+
+
+<div class="col-md-5">
+
+<div class="card bg-light border-0">
+
+<div class="card-body">
+
+<h5 class="fw-bold">
+<i class="bi bi-robot"></i>
+Gemini Selling Advice
+</h5>
+
+<p>{{ advice }}</p>
+
+</div>
+</div>
+
+
+<table class="table table-hover mt-3">
+
+<thead>
+<tr>
+<th>Month</th>
+<th>Predicted Price (per quintal)</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for p in predictions %}
+
+<tr>
+<td>{{ p['month'] }}</td>
+<td class="fw-bold text-success">₹{{ "%.2f"|format(p['predicted_price']) }}</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+</div>
+</div>
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% if predictions %}
+
+<script>
+
+const labels = [
+{% for p in predictions %}
+"{{ p['month'] }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const prices = [
+{% for p in predictions %}
+{{ p['predicted_price'] }}{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const ctx = document.getElementById("predictionChart");
+
+if (ctx) {
+
+new Chart(ctx, {
+
+type: "line",
+
+data: {
+labels: labels,
+
+datasets: [{
+label: "Predicted Price (₹)",
+data: prices,
+
+borderColor: "#2e7d32",
+backgroundColor: "rgba(46,125,50,0.1)",
+
+borderWidth: 3,
+fill: true,
+tension: 0.4
+}]
+},
+
+options: {
+responsive: true,
+
+plugins: {
+legend: {
+position: "top"
+}
+},
+
+scales: {
+y: {
+beginAtZero: false
+}
+}
+}
+
+});
+
+}
+
+</script>
+
+{% endif %}
+{% endblock %}
