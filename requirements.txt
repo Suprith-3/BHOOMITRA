@@ -6,5 +6,7 @@ gunicorn
 python-dotenv
 requests
 numpy
+pandas
 opencv-python-headless
 google-generativeai
+
