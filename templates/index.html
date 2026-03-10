@@ -8,11 +8,10 @@
                 <h1 class="display-3 fw-bold mb-3">Smart Farming Starts Here</h1>
                 <p class="lead mb-4 opacity-90">Empowering farmers with AI, real-time data, and advanced analytics for better yields and higher profits.</p>
                 <div class="d-flex flex-wrap gap-3 justify-content-lg-start justify-content-center">
-                    {% if not current_user.is_authenticated %}
-                        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5">Get Started</a>
-                    {% else %}
+                   
+                        
                         <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg px-5">Go to Dashboard</a>
-                    {% endif %}
+                    
                     <a href="#" class="btn btn-outline-light btn-lg px-5 shadow-sm">Watch Demo</a>
                 </div>
             </div>
