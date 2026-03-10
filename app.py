@@ -198,7 +198,7 @@ def logout():
 # DASHBOARD
 # ---------------------------------------------------
 @app.route("/dashboard")
-@login_required
+
 def dashboard():
     return render_template("dashboard.html")
 
@@ -207,7 +207,7 @@ def dashboard():
 # DISEASE DETECTION
 # ---------------------------------------------------
 @app.route("/disease-detection", methods=["GET", "POST"])
-@login_required
+
 def disease_detection():
 
     if request.method == "POST":
@@ -252,7 +252,7 @@ def disease_detection():
 # LIVE CAMERA DISEASE DETECTION
 # ---------------------------------------------------
 @app.route("/camera-detection")
-@login_required
+
 def camera_detection():
 
     disease_model.start_camera_detection()
@@ -266,7 +266,7 @@ def camera_detection():
 # PRICE PREDICTION
 # ---------------------------------------------------
 @app.route("/price-prediction", methods=["GET","POST"])
-@login_required
+
 def price_prediction():
 
     predictions = []
@@ -295,7 +295,7 @@ def price_prediction():
 # CLIMATE PREDICTION
 # ---------------------------------------------------
 @app.route("/climate-prediction")
-@login_required
+
 def climate_prediction():
     return render_template("climate_prediction.html")
 
@@ -304,7 +304,7 @@ def climate_prediction():
 # CROP RECOMMENDATION
 # ---------------------------------------------------
 @app.route("/crop-recommendation")
-@login_required
+
 def crop_recommendation():
     return render_template("crop_recommendation.html")
 
@@ -313,7 +313,7 @@ def crop_recommendation():
 # MARKETPLACE
 # ---------------------------------------------------
 @app.route("/marketplace", methods=["GET", "POST"])
-@login_required
+
 def marketplace():
 
     if request.method == "POST":
@@ -347,7 +347,7 @@ def marketplace():
 # CHATBOT
 # ---------------------------------------------------
 @app.route("/chatbot", methods=["GET", "POST"])
-@login_required
+
 def chatbot():
 
     response = ""
@@ -366,7 +366,7 @@ def chatbot():
 # YIELD PREDICTION
 # ---------------------------------------------------
 @app.route("/yield-prediction", methods=["GET", "POST"])
-@login_required
+
 def yield_prediction():
 
     result = None
@@ -410,7 +410,7 @@ def gov_services():
 # SATELLITE MONITORING
 # ---------------------------------------------------
 @app.route("/satellite-monitoring")
-@login_required
+
 def satellite_monitoring():
     return render_template("satellite_monitoring.html")
 
