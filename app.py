@@ -230,7 +230,7 @@ def disease_detection():
             treatment = gemini.get_disease_info(disease_name)
 
             report = DiseaseReport(
-                user_id=current_user.id,
+                
                 image_path=filename,
                 disease_name=disease_name,
                 treatment=treatment
