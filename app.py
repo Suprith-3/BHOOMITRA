@@ -11,7 +11,7 @@ from models import db, User, Crop, DiseaseReport, YieldPrediction
 from config import Config
 import pandas as pd
 import numpy as np
-import google.generativeai as genai
+
 from services.email_service import mail, send_otp_email, generate_otp
 from services.gemini_service import GeminiService
 
