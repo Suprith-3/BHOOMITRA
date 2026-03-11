@@ -8,7 +8,7 @@ class GeminiService:
 
     def __init__(self):
 
-        api_key = current_app.config.get("GEMINI_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY")
 
         if not api_key:
             print("⚠ GEMINI API key missing")

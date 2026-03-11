@@ -20,6 +20,7 @@ from ai_modules.price_model import PriceModel
 from ai_modules.yield_model import YieldModel
 
 
+
 # ---------------------------------------------------
 # FLASK APP INITIALIZATION
 # ---------------------------------------------------
@@ -49,7 +50,7 @@ disease_model = DiseaseModel()
 price_model = PriceModel()
 yield_model = YieldModel()
 
-gemini = None
+gemini =GeminiService() 
 
 
 # ---------------------------------------------------
