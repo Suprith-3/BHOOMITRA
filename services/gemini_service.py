@@ -1,7 +1,6 @@
-import google.genai as genai
-from flask import current_app, flash 
-from dotenv import load_dotenv
-import os  
+from flask import current_app
+import os
+from google import genai
 
 
 class GeminiService:
@@ -12,28 +11,29 @@ class GeminiService:
 
         if not api_key:
             print("⚠ GEMINI API key missing")
-            self.model = None
+            self.client = None
             return
 
         try:
-            genai.configure(api_key=api_key)
-
-            # Updated working model
-            self.model = genai.GenerativeModel("gemini-2.5-flash")
+            # Initialize Gemini client
+            self.client = genai.Client(api_key=api_key)
 
         except Exception as e:
             print(f"Gemini initialization error: {e}")
-            self.model = None
+            self.client = None
 
 
     def get_response(self, prompt):
 
-        if not self.model:
+        if not self.client:
             return "Gemini AI service is not configured."
 
         try:
 
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
 
             if response and response.text:
                 return response.text
