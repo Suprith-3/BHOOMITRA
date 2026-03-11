@@ -1,4 +1,4 @@
-import google.generativeai as genai
+import google.genai as genai
 from flask import current_app, flash 
 from dotenv import load_dotenv
 import os  
