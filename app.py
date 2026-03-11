@@ -208,7 +208,6 @@ def dashboard():
 # DISEASE DETECTION
 # ---------------------------------------------------
 @app.route("/disease-detection", methods=["GET", "POST"])
-
 def disease_detection():
 
     if request.method == "POST":
@@ -230,7 +229,7 @@ def disease_detection():
             treatment = gemini.get_disease_info(disease_name)
 
             report = DiseaseReport(
-                
+                user_id=current_user.id,
                 image_path=filename,
                 disease_name=disease_name,
                 treatment=treatment
@@ -253,7 +252,6 @@ def disease_detection():
 # LIVE CAMERA DISEASE DETECTION
 # ---------------------------------------------------
 @app.route("/camera-detection")
-
 def camera_detection():
 
     disease_model.start_camera_detection()
@@ -261,6 +259,9 @@ def camera_detection():
     flash("Camera closed successfully", "info")
 
     return redirect(url_for("disease_detection"))
+
+
+ 
 
 
 # ---------------------------------------------------
